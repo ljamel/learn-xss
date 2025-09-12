@@ -1,0 +1,22 @@
+<!-- vuln_reflected.html -->
+<!doctype html>
+<html>
+  <body>
+    Recherche : 
+    <form method="GET">
+      <input name="q" />
+      <button>Go</button>
+    </form>
+
+    <div id="result">
+      Résultats pour : <!-- le serveur affiche directement q -->
+      <span id="out"></span>
+    </div>
+
+    <script>
+      // simulation d'une application qui insère la valeur sans échappement
+      const params = new URLSearchParams(location.search);
+      document.getElementById('out').innerHTML = params.get('q') || '';
+    </script>
+  </body>
+</html>
